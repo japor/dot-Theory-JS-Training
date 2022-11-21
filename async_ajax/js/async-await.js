@@ -4,6 +4,19 @@ const peopleList = document.getElementById('people');
 const btn = document.querySelector('button');
 
 // Handle all fetch requests
+async function getPeople(url) {
+  const people = await fetch(url);
+  const peopleJson = await people.json();
+
+  const profiles = peopleJson.people.map( async(person) => {
+    const craft = person.craft;
+    const profileResponse = await fetch(wikiUrl + person.name);
+    const profileJson = await profileResponse.json();
+    return {...profileJson, craft};
+  });
+
+  return Promise.all(profiles);
+}
 
 
 // Generate the markup for each profile
@@ -31,7 +44,9 @@ function generateHTML(data) {
   });
 }
 
-btn.addEventListener('click', (event) => {
+btn.addEventListener('click', async (event) => {
   event.target.textContent = "Loading...";
-
+  const profiles = await getPeople(astrosUrl);
+  generateHTML(profiles);
+  event.target.remove();
 });
