@@ -1,0 +1,9 @@
+extend layout.pug 
+
+block content 
+    section.desk
+        h1 '#{error.message} - Status: #{error.status}'
+        img(src="/static/desk.svg", class="desk-items")
+        a(href="/hello" class="button-primary-small") Go Home
+        div.paper
+            pre.stack-trace #{error.stack}

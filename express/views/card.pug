@@ -1,0 +1,23 @@
+extend layout.pug
+
+block content
+    section.namecard
+        div.namecard-hello
+            p.namecard-hello Welcome, #{name}!
+            form(action='/ggwp', method='post' class="namecard-exit")
+                button(type='submit') 
+                    img(src="/static/img/close.svg", alt="close")
+    section.flashcards
+        div(class="card card-"+side)
+            div.card-header
+            h1.card-title #{side}
+            div#content
+                h2=text
+                p#hint 
+                    i Hint: #{hint}
+            div.card-flip-wrap
+                a(href=url)
+                    img(src="/static/img/flip.svg", class="card-flip")
+            div.card-next
+                a(href="/cards")
+                    img(src="/static/img/next.svg", alt="") 
