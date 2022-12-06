@@ -1,0 +1,11 @@
+extend layout.pug
+
+block content
+    section.namecard
+        div.namecard-hello
+            p.namecard-hello Welcome, #{name}!
+            form(action='/ggwp', method='post' class="namecard-exit")
+                button(type='submit') 
+                    img(src="/static/img/close.svg", alt="close")
+        h1.namecard-prompt Let's get started
+        a.namecard-submit(href="/cards") G!
